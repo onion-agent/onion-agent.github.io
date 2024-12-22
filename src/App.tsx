@@ -2,10 +2,10 @@ import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 import { HashRouter, Route, Routes } from "react-router";
 import Dashboard from "./Dashboard";
+import Layout from "./Layout";
 import NewsDetail from "./NewsDetail";
 import { newsListAtom } from "./NewsList/NewAtom";
 import { API } from "./utils/api";
-import Layout from "./Layout";
 function App() {
   const setNewsList = useSetAtom(newsListAtom);
   useEffect(() => {

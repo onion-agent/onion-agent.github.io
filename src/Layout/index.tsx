@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-import React from "react";
-import Header from "../Header";
-import { Outlet } from "react-router";
 import Drawer from "@mui/material/Drawer";
-import { mobileMedia, useIsMobile } from "../utils/responsive";
-import MobileHeader from "../Header/MobileHeader";
+import React from "react";
+import { Outlet } from "react-router";
+import BrowserHistory from "../BrowserHistory";
+import Header from "../Header";
 import MobileDrawerContent from "../Header/MobileDrawerContent";
+import MobileHeader from "../Header/MobileHeader";
+import { mobileMedia, useIsMobile } from "../utils/responsive";
 interface LayoutProps {
   className?: string;
 }
@@ -19,6 +20,8 @@ const LayoutComp: React.ComponentType<LayoutProps> = (props: LayoutProps) => {
   const isMobile = useIsMobile();
   return (
     <Container className={className}>
+      <BrowserHistory />
+
       {isMobile ? <MobileHeader onClick={toggleDrawer(true)} /> : <Header />}
       <Outlet />
       {isMobile ? (

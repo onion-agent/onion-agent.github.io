@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
+import { useAtomValue } from "jotai";
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router";
+import backSvg from "../assets/back.svg";
+import { browserHistoryAtom } from "../BrowserHistory/BrowserHistoryAtom";
 import { ContentParser } from "../utils/ContentParser";
 import { getTimeAgoStrLong } from "../utils/date";
 import { NewsItemType } from "../utils/type";
-import backSvg from "../assets/back.svg";
 interface DetailContentProps {
   className?: string;
   item: NewsItemType;
@@ -20,11 +22,16 @@ const DetailContentComp: React.ComponentType<DetailContentProps> = (
     const dateTimeStamp = new Date(createdAt).valueOf();
     return getTimeAgoStrLong(dateTimeStamp);
   }, [createdAt]);
+  const history = useAtomValue(browserHistoryAtom);
   return (
     <Container className={className}>
       <Back
         onClick={() => {
-          navigate(-1);
+          if (history.indexOf("/") > -1) {
+            navigate(-1);
+          } else {
+            navigate("/");
+          }
         }}
       >
         <BackIcon src={backSvg} />
