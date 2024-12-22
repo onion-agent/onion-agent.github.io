@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect } from "react";
-import logo from "/logo1.jpeg";
+import logo from "/logo2.jpeg";
 import Icon from "../IconPark";
 interface HeaderProps {
   className?: string;
