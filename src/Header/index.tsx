@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "/logo1.jpeg";
 import Icon from "../IconPark";
 interface HeaderProps {
@@ -8,6 +8,18 @@ interface HeaderProps {
 
 const HeaderComp: React.ComponentType<HeaderProps> = (props: HeaderProps) => {
   const { className } = props;
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = "https://platform.twitter.com/widgets.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   return (
     <Container className={className}>
       <Title>Onion agent</Title>
@@ -18,7 +30,7 @@ const HeaderComp: React.ComponentType<HeaderProps> = (props: HeaderProps) => {
           agents’ world.{" "}
         </Desc>
         <SocialLine>
-          <IconContainer href="https://x.com/" target="_blank">
+          <IconContainer href="https://x.com/onionagent" target="_blank">
             <StyledIcon icon="twitter" />
           </IconContainer>
 
@@ -27,6 +39,15 @@ const HeaderComp: React.ComponentType<HeaderProps> = (props: HeaderProps) => {
           </IconContainer>
         </SocialLine>
       </Info>
+      <TwitterEmbedContainer>
+        <a
+          className="twitter-timeline"
+          data-height="300"
+          href="https://twitter.com/OnionAgent?ref_src=twsrc%5Etfw"
+        >
+          Posts from OnionAgent
+        </a>{" "}
+      </TwitterEmbedContainer>
     </Container>
   );
 };
@@ -86,4 +107,8 @@ const IconContainer = styled.a`
 const StyledIcon = styled(Icon)`
   width: 20px;
   height: 20px;
+`;
+
+const TwitterEmbedContainer = styled.div`
+  padding: 20px;
 `;

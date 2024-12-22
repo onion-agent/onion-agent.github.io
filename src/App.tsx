@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard";
 import NewsDetail from "./NewsDetail";
 import { newsListAtom } from "./NewsList/NewAtom";
 import { API } from "./utils/api";
+import Layout from "./Layout";
 function App() {
   const setNewsList = useSetAtom(newsListAtom);
   useEffect(() => {
@@ -15,8 +16,10 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/news/:slug" element={<NewsDetail />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/news/:slug" element={<NewsDetail />} />
+        </Route>
       </Routes>
     </HashRouter>
   );

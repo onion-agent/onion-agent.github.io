@@ -1,3 +1,5 @@
+import { useMediaQuery } from "./useMediaQuery";
+
 export const ResponsiveBreakpoints = {
   PC: 1200,
   TABLET: 768,
@@ -37,3 +39,7 @@ export const tabletAndMobileMedia = `@media (max-width: ${
   ResponsiveBreakpoints.PC - 1
 }px)`;
 export const pcAndTabletMedia = `@media (min-width: ${ResponsiveBreakpoints.TABLET}px)`;
+
+export const useIsMobile = () => {
+  return useMediaQuery(pureMobileMedia);
+};
